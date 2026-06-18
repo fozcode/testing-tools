@@ -6,10 +6,9 @@
     <title>Token Test</title>
 </head>
 <body>
-    <div>This is a random web site</div>
-    <iframe src="https://presenter.qa.fieldtwin.com/-Nl3B9e9LD06Wz6Ko4tn" width="80%" height="500px" style="border: none;"></iframe>
+    <div>This is a random web site<br><br></div>
+    <iframe src="https://presenter.qa.fieldtwin.com/-Nl3B9e9LD06Wz6Ko4tn" width="5%" height="5%" style="border: none;"></iframe>
     <div id="tokenDisplay" style="margin-top: 20px;">
-
     </div>
     <script>
         window.onmessage = function(event) {
@@ -20,9 +19,9 @@
                 if (tokenParts.length === 3) {
                     const payload = JSON.parse(atob(tokenParts[1]));
                     document.getElementById('tokenDisplay').innerHTML = `
-                        <h3>Decoded Token Payload:</h3>
+                        <h3>FieldTwin sent me this token</h3>
                         <pre>${JSON.stringify(payload, null, 2)}</pre>
-                    `; 
+                    `;
                 } else {
                     document.getElementById('tokenDisplay').innerHTML = '<p>Invalid token format.</p>';
                 }
