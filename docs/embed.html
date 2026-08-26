@@ -3,20 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Token Test</title>
+    <title>Embedding Test</title>
 </head>
 <body>
-    <div>This is a random web site
-        <br><br>
-        Pretend this iframe is hidden:
-        <br><br>
+    <h3>Embedded site</h3>
+    <div>
+        This iframe could be hidden:<br>
+        <iframe src="https://test2-presenter.futureon-dev.fieldtwin.com/-P-xA9P0OnOtYF11mZo9" width="5%" height="5%" style="border: none;"></iframe>
     </div>
-    <iframe src="https://TODO" width="5%" height="5%" style="border: none;"></iframe>
+    <h3>Token</h3>
     <div id="tokenDisplay" style="margin-top: 20px;">
+        None
+    </div>
+    <h3>Messages</h3>
+    <div id="msgDisplay" style="margin-top: 20px;">
+        None
     </div>
     <script>
+        let msgCount = 0;
         window.onmessage = function(event) {
             console.log('Received message:', event.data);
+            msgCount++;
+            document.getElementById('msgDisplay').innerHTML += `<p>${msgCount}:<br>${JSON.stringify(event.data)}</p>`;
             if (event.data.token) {
                 // decode JWT
                 const tokenParts = event.data.token.split('.');
