@@ -8,8 +8,9 @@
 <body>
     <h3>Embedded site</h3>
     <div>
-        This iframe could be hidden:<br>
-        <iframe src="https://test2-presenter.futureon-dev.fieldtwin.com/-P-xA9P0OnOtYF11mZo9" width="5%" height="5%" style="border: none;"></iframe>
+        URL <input type="text" id="urlInput" value="https://example.com" style="width: 80%;">
+        <br>This iframe could be hidden:<br>
+        <iframe id="embedFrame" src="https://example.com" width="25%" height="15%" style="border: none;"></iframe>
     </div>
     <h3>Token</h3>
     <div id="tokenDisplay" style="margin-top: 20px;">
@@ -20,6 +21,13 @@
         None
     </div>
     <script>
+        // When urlInput changes, update the iframe src
+        document.getElementById('urlInput').addEventListener('input', function() {
+            const newUrl = this.value;
+            document.getElementById('embedFrame').src = newUrl;
+        });
+
+        // Listen for messages from the iframe
         let msgCount = 0;
         window.onmessage = function(event) {
             console.log('Received message:', event.data);
